@@ -17,26 +17,26 @@ class Day3Part1 {
 
         file.forEachIndexed{ i, line ->
             numberRegex.findAll(line).forEach { result ->
-                    val value = result.value.toInt()
-                    val indexNumber = result.range.first
+                val value = result.value.toInt()
+                val indexNumber = result.range.first
 
-                    if (i == 0) {
-                        checkSymbolExistsInLine(line, indexNumber, value)
-                        checkSymbolExistsBelowOrAboveLine(file[i+1], indexNumber, value)
-                    }
-                    if(i in 1 until file.size){
-                        // e.g:
-                        // ...*555..
-                        // OR
-                        // ...555*..
-                        checkSymbolExistsInLine(line, indexNumber, value)
-                        checkSymbolExistsBelowOrAboveLine(file[i+1], indexNumber, value)
-                        checkSymbolExistsBelowOrAboveLine(file[i-1], indexNumber, value)
-                    }
-                    else if (i == file.size - 1) {
-                        checkSymbolExistsInLine(line, indexNumber, value)
-                        checkSymbolExistsBelowOrAboveLine(file[i-1], indexNumber, value)
-                    }
+                if (i == 0) {
+                    checkSymbolExistsInLine(line, indexNumber, value)
+                    checkSymbolExistsBelowOrAboveLine(file[i+1], indexNumber, value)
+                }
+                if(i in 1 until file.size){
+                    // e.g:
+                    // ...*555..
+                    // OR
+                    // ...555*..
+                    checkSymbolExistsInLine(line, indexNumber, value)
+                    checkSymbolExistsBelowOrAboveLine(file[i+1], indexNumber, value)
+                    checkSymbolExistsBelowOrAboveLine(file[i-1], indexNumber, value)
+                }
+                else if (i == file.size - 1) {
+                    checkSymbolExistsInLine(line, indexNumber, value)
+                    checkSymbolExistsBelowOrAboveLine(file[i-1], indexNumber, value)
+                }
             }
         }
         println(sum)
