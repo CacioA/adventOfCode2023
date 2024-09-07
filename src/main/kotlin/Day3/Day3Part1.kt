@@ -7,7 +7,7 @@ fun main () {
 }
 class Day3Part1 {
     private var sum = 0
-    private var symbols = listOf('0','1','2','3','4','5','6','7','8','9','.')
+    private var notSymbols = listOf('0','1','2','3','4','5','6','7','8','9','.')
     private var startingNon0Index = 0
     private var endingNonMaxIndex = 0
 
@@ -42,7 +42,7 @@ class Day3Part1 {
         // substring end index is not inclusive, so +1
 
         line.substring(startingNon0Index - 1, endingNonMaxIndex + 1)
-            .filter { !symbols.contains(it) }
+            .filter { !notSymbols.contains(it) }
             .also{ if (it.isNotEmpty()) sum += value}
     }
 
@@ -60,8 +60,8 @@ class Day3Part1 {
 
     private fun checkSymbolExistsInLine(line: String, indexNumber: Int, value: Int) {
         sanitizeIndexes(indexNumber, value, line.length)
-        if (!symbols.contains(line.get(startingNon0Index - 1))
-            || !symbols.contains(line.get(endingNonMaxIndex)))
+        if (!notSymbols.contains(line.get(startingNon0Index - 1))
+            || !notSymbols.contains(line.get(endingNonMaxIndex)))
             sum += value
     }
 }
